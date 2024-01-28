@@ -1,4 +1,4 @@
-# pedulum_GUI
+# Pedulum GUI
  A Matlab GUI Simulator for first-order pedulum. Support linear model, non-linear model and discrete linear model with 3 kinds of controllers including state-feedback contorller, output-feedback contorller, LQR contorller.
 
 ![Introduction](./resources/gif1.gif)
