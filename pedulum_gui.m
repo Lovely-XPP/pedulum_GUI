@@ -1,4 +1,4 @@
-classdef pedulum_gui_exported < matlab.apps.AppBase
+classdef pedulum_gui < matlab.apps.AppBase
 
     % Properties that correspond to app components
     properties (Access = public)
@@ -714,9 +714,23 @@ classdef pedulum_gui_exported < matlab.apps.AppBase
         % Code that executes after component creation
         function startupFcn(app)
             app.UIFigure.Name = "一阶倒立摆仿真控制程序";
-            if verLessThan('matlab', '9.10')
+            if isMATLABReleaseOlderThan("R2021a")
                 uialert(app.UIFigure, "当前的Matlab版本太低，无法使用此APP，请更新至R2021a及以上。", ...
                     "不支持的Matlab版本", "Icon", "error");
+                delete(app);
+                return;
+            end
+            valid_ver = false;
+            toolboxes = ver;
+            for i = 1:length(toolboxes)
+                if strcmp(toolboxes(i).Name, "Control System Toolbox")
+                    valid_ver = true;
+                    break
+                end
+            end
+            if ~valid_ver
+                uialert(app.UIFigure, "请安装 Control System Toolbox 工具箱。", ...
+                    "缺少工具箱", "Icon", "error");
                 delete(app);
                 return;
             end
@@ -4076,7 +4090,7 @@ classdef pedulum_gui_exported < matlab.apps.AppBase
     methods (Access = public)
 
         % Construct app
-        function app = pedulum_gui_exported
+        function app = pedulum_gui
 
             % Create UIFigure and components
             createComponents(app)
