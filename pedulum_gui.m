@@ -792,7 +792,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: exit
-        function exitButtonPushed(app, event)
+        function exitButtonPushed(app, ~)
             if app.motion_pause_flag
                 uiresume(app.UIFigure);
                 app.motion_pause_flag = false;
@@ -803,7 +803,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: start
-        function startButtonPushed(app, event)
+        function startButtonPushed(app, ~)
             % init
             app.init_motion();
             plot(app.angle_fig, 0, 0);
@@ -1128,7 +1128,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: play
-        function playButtonPushed(app, event)
+        function playButtonPushed(app, ~)
             if app.motion_pause_flag && ~app.motion_replay_flag
                 uiresume(app.UIFigure);
                 app.play.Text = "暂停播放";
@@ -1200,7 +1200,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: openfile
-        function openfileButtonPushed(app, event)
+        function openfileButtonPushed(app, ~)
             [file, path] = uigetfile('*.mdl','Select the Pedulum Simulink Model file','pedulum_model.mdl');
             % user cancel operation
             if path == 0
@@ -1224,7 +1224,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: editfile
-        function editfileButtonPushed(app, event)
+        function editfileButtonPushed(app, ~)
             file = app.file_path;
             if ~exist(file, "file")
                 uialert(app.UIFigure, ['未找到文件: ' file '. 请重新打开模型文件.'], '文件打开错误');
@@ -1236,7 +1236,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: exportfile
-        function exportfileButtonPushed(app, event)
+        function exportfileButtonPushed(app, ~)
             file = app.file_path;
             if ~exist(file, "file")
                 uialert(app.UIFigure, ['未找到文件: ' file '. 请重新打开模型文件.'], '文件打开错误');
@@ -1268,7 +1268,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: hide_linear
-        function hide_linearButtonPushed(app, event)
+        function hide_linearButtonPushed(app, ~)
             if app.hide_linear.Text == "隐藏线性结果"
                 plot(app.angle_fig, app.t_simdata, app.yout_simdata2(:,1), 'LineWidth',2);
                 plot(app.position_fig, app.t_simdata, app.yout_simdata2(:,2), 'LineWidth', 2);
@@ -1293,7 +1293,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: hide_nonlinear
-        function hide_nonlinearButtonPushed(app, event)
+        function hide_nonlinearButtonPushed(app, ~)
             if app.hide_nonlinear.Text == "隐藏非线性结果"
                 plot(app.angle_fig, app.t_simdata, app.yout_simdata(:,1), 'LineWidth',2);
                 plot(app.position_fig, app.t_simdata, app.yout_simdata(:,2), 'LineWidth', 2);
@@ -1318,7 +1318,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: export_result
-        function export_resultButtonPushed(app, event)
+        function export_resultButtonPushed(app, ~)
             [outfile, outpath] = uiputfile({'*.pdf', '*.png'},'Save Simulation Results','results.pdf');
             % user cancel operation
             if outpath == 0
@@ -1364,12 +1364,12 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Close request function: UIFigure
-        function UIFigureCloseRequest(app, event)
+        function UIFigureCloseRequest(app, ~)
             app.close_function();
         end
 
         % Button pushed function: export_observer_result
-        function export_observer_resultButtonPushed(app, event)
+        function export_observer_resultButtonPushed(app, ~)
             [outfile, outpath] = uiputfile({'*.pdf', '*.png'},'Save Observer Simulation Results','observer_1.pdf');
             % user cancel operation
             if outpath == 0
@@ -1434,7 +1434,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: export_observer_result_2
-        function export_observer_result_2ButtonPushed(app, event)
+        function export_observer_result_2ButtonPushed(app, ~)
             [outfile, outpath] = uiputfile({'*.pdf', '*.png'},'Save Observer Simulation Results','observer_2.pdf');
             % user cancel operation
             if outpath == 0
@@ -1499,7 +1499,7 @@ classdef pedulum_gui < matlab.apps.AppBase
         end
 
         % Button pushed function: export_system_result
-        function export_system_resultButtonPushed(app, event)
+        function export_system_resultButtonPushed(app, ~)
             [outfile, outpath] = uiputfile({'*.pdf', '*.png'},'Save System Performance Results','system.pdf');
             % user cancel operation
             if outpath == 0
